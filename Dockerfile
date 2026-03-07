@@ -17,8 +17,8 @@ RUN pip install --no-cache-dir --upgrade -r /code/requirements.txt
 COPY ./app /code/app
 COPY ./model /code/model
 
-#Exposer l'api qui va communiquer, sur le port 8000
-EXPOSE 8000
+#Exposer l'api qui va communiquer, sur le port 7860 (Port exigé par Hugging Face)
+EXPOSE 7860
 
 #La commande qui va s'exécuter au démarrage du conteneur
-CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]
+CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "7860"]
