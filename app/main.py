@@ -68,3 +68,5 @@ def predict(data: ClientData):
         }
     except Exception as e:
         raise HTTPException(status_code=400, detail=f"Erreur de prédiction : {str(e)}")
+    
+    # test cache
