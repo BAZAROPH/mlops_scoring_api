@@ -1,0 +1,106 @@
+[
+    {
+        "label": "FastAPI",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
+        "label": "HTTPException",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
+        "label": "BaseModel",
+        "importPath": "pydantic",
+        "description": "pydantic",
+        "isExtraImport": true,
+        "detail": "pydantic",
+        "documentation": {}
+    },
+    {
+        "label": "asynccontextmanager",
+        "importPath": "contextlib",
+        "description": "contextlib",
+        "isExtraImport": true,
+        "detail": "contextlib",
+        "documentation": {}
+    },
+    {
+        "label": "joblib",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "joblib",
+        "description": "joblib",
+        "detail": "joblib",
+        "documentation": {}
+    },
+    {
+        "label": "pandas",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "pandas",
+        "description": "pandas",
+        "detail": "pandas",
+        "documentation": {}
+    },
+    {
+        "label": "os",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "os",
+        "description": "os",
+        "detail": "os",
+        "documentation": {}
+    },
+    {
+        "label": "ClientData",
+        "kind": 6,
+        "importPath": "app.main",
+        "description": "app.main",
+        "peekOfCode": "class ClientData(BaseModel):\n    features: dict\n#4 rOUTE D'accueil\n@app.get(\"/\")\ndef read_root():\n    return {\"message\": \"Bienvenue sur l'API de Scoring Crédit. Visitez /docs pour la documentation.\"}\n#5 Route de prédiction\n@app.post(\"/predict\")\ndef predict(data: ClientData):\n    #On vérifie si le modèle a bien été chargé au démarrage",
+        "detail": "app.main",
+        "documentation": {}
+    },
+    {
+        "label": "read_root",
+        "kind": 2,
+        "importPath": "app.main",
+        "description": "app.main",
+        "peekOfCode": "def read_root():\n    return {\"message\": \"Bienvenue sur l'API de Scoring Crédit. Visitez /docs pour la documentation.\"}\n#5 Route de prédiction\n@app.post(\"/predict\")\ndef predict(data: ClientData):\n    #On vérifie si le modèle a bien été chargé au démarrage\n    if \"model_scoring\" not in ml_models:\n        raise HTTPException(status_code=500, detail=\"Le modèle n'est pas prêt.\")\n    try:\n        df = pd.DataFrame([data.features])",
+        "detail": "app.main",
+        "documentation": {}
+    },
+    {
+        "label": "predict",
+        "kind": 2,
+        "importPath": "app.main",
+        "description": "app.main",
+        "peekOfCode": "def predict(data: ClientData):\n    #On vérifie si le modèle a bien été chargé au démarrage\n    if \"model_scoring\" not in ml_models:\n        raise HTTPException(status_code=500, detail=\"Le modèle n'est pas prêt.\")\n    try:\n        df = pd.DataFrame([data.features])\n        model = ml_models[\"model_scoring\"]\n        #Prédiction (classe 1 = défaut)\n        #model.predict_proba renvoie [[proba_classe_0, proba_classe_1]]\n        proba_defaut = model.predict_proba(df)[0][1]",
+        "detail": "app.main",
+        "documentation": {}
+    },
+    {
+        "label": "ml_models",
+        "kind": 5,
+        "importPath": "app.main",
+        "description": "app.main",
+        "peekOfCode": "ml_models = {}\n#1 Gestion de la durée de vie de l'API\n@asynccontextmanager\nasync def lifespan(app: FastAPI):\n    #Code qui s'exeécute uniquement au démarrage de l'API\n    base_dir = os.path.dirname(os.path.abspath(__file__))\n    model_path = os.path.join(base_dir, \"..\", \"model\", \"model_scoring.joblib\")\n    try:\n        #On charge le modèle et on le stocke dans notre dictionnaire\n        ml_models[\"model_scoring\"] = joblib.load(model_path)",
+        "detail": "app.main",
+        "documentation": {}
+    },
+    {
+        "label": "app",
+        "kind": 5,
+        "importPath": "app.main",
+        "description": "app.main",
+        "peekOfCode": "app = FastAPI(\n    title=\"API de Scoring Crédit\",\n    description=\"Cette API évalue la probabilité de défaut de paiement d'un client.\",\n    version=\"1.0.0\",\n    lifespan=lifespan\n)\n#3 Définition du modèle de données d'entrée\nclass ClientData(BaseModel):\n    features: dict\n#4 rOUTE D'accueil",
+        "detail": "app.main",
+        "documentation": {}
+    }
+]
