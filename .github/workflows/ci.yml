@@ -33,7 +33,7 @@ jobs:
             #Lancer la commande de test
             -   name: Lancement des tests automatisés
                 run: |
-                    pytest --cov=app tests/ -v --cov=app
+                    PYTHONPATH=. pytest --cov=app tests/ -v --cov=app
 
             
             
