@@ -1,8 +1,8 @@
 #On part d'un linex légé avec python3.10
-FROM python:3.19-slim
+FROM python:3.11-slim
 
 #On définit le dossier de travail dans le conteneur
-WORKDIR /app
+WORKDIR /code
 
 #On installe la librairie système pour LightGBM
 RUN apt-get update && apt-get install -y libgomp1
