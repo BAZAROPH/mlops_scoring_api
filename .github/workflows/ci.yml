@@ -51,7 +51,27 @@ jobs:
                 env:
                     HF_TOKEN: ${{ secrets.HF_TOKEN }}
                 run: |
-                    git push https://bazaroph:$HF_TOKEN@huggingface.co/spaces/bazaroph/api-scoring-credit main --force
+                    #On donne une identité à notre robot pour qu'il puisse signer l'envoi
+                    git config --global user.email "bot@github.com"
+                    git config --global user.name "GitHub Actions Bot"
+                    
+                    # On télécharge l'espace Hugging Face
+                    git clone https://bazaroph:${HF_TOKEN}@huggingface.co/spaces/bazaroph/api-scoring-credit hf_space
+                    
+                    #On copie tout le projet dans ce dossier (sauf les éléments cachés de GitHub)
+                    rsync -av --exclude='.git' --exclude='hf_space' ./ hf_space/
+                    
+                    #On rentre dans le dossier
+                    cd hf_space
+                    
+                    #On dit à Git de traiter le modèle comme un gros fichier (LFS)
+                    git lfs install
+                    git lfs track "*.joblib"
+                    
+                    #On sauvegarde et on pousse sur Hugging Face !
+                    git add .
+                    git commit -m "Déploiement automatique depuis GitHub"
+                    git push https://bazaroph:${HF_TOKEN}@huggingface.co/spaces/bazaroph/api-scoring-credit main
             
 
             
