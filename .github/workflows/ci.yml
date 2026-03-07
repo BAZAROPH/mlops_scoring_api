@@ -1,0 +1,41 @@
+name: CI Pipeline API Scoring
+
+#1 On dit à Github de se déclencher à chaque push sur la branche main ou master
+on:
+    push:
+        branches:
+            - main
+            - master
+
+jobs:
+    test-api:
+        #On demande un serveur linux
+        runs-on: ubuntu-latest
+        
+        steps:
+            #Récupérer notre code
+            -   name: Récupération du code
+                uses: actions/checkout@v2
+
+            #Intaller python sur le serveur
+            -   name: Installation Python
+                uses: actions/setup-python@v4
+                with:
+                    python-version: "3.11"
+
+            #Installer les librairies du projet
+            -   name: Installation des dépendances
+                run: |
+                    python -m pip install --upgrade pip
+                    pip install -r requirements.txt
+                    pip install pytest pytest-cov lightgbm scikit-learn pandas joblib
+
+            #Lancer la commande de test
+            -   name: Lancement des tests automatisés
+                run: |
+                    pytest --cov=app tests/ -v --cov=app
+
+            
+            
+
+            

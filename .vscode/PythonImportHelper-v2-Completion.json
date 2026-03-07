@@ -59,6 +59,22 @@
         "documentation": {}
     },
     {
+        "label": "TestClient",
+        "importPath": "fastapi.testclient",
+        "description": "fastapi.testclient",
+        "isExtraImport": true,
+        "detail": "fastapi.testclient",
+        "documentation": {}
+    },
+    {
+        "label": "app",
+        "importPath": "app.main",
+        "description": "app.main",
+        "isExtraImport": true,
+        "detail": "app.main",
+        "documentation": {}
+    },
+    {
         "label": "ClientData",
         "kind": 6,
         "importPath": "app.main",
@@ -101,6 +117,33 @@
         "description": "app.main",
         "peekOfCode": "app = FastAPI(\n    title=\"API de Scoring Crédit\",\n    description=\"Cette API évalue la probabilité de défaut de paiement d'un client.\",\n    version=\"1.0.0\",\n    lifespan=lifespan\n)\n#3 Définition du modèle de données d'entrée\nclass ClientData(BaseModel):\n    features: dict\n#4 rOUTE D'accueil",
         "detail": "app.main",
+        "documentation": {}
+    },
+    {
+        "label": "test_read_root",
+        "kind": 2,
+        "importPath": "tests.test_api",
+        "description": "tests.test_api",
+        "peekOfCode": "def test_read_root():\n    \"\"\"\n        Test 1: Vérifier que la page d'accueil répond bien\n    \"\"\"\n    with TestClient(app) as client:\n        response = client.get(\"/\")\n        assert response.status_code == 200\n        assert \"Bienvenue\" in response.json()[\"message\"]\ndef test_predict_missing_features():\n    \"\"\"",
+        "detail": "tests.test_api",
+        "documentation": {}
+    },
+    {
+        "label": "test_predict_missing_features",
+        "kind": 2,
+        "importPath": "tests.test_api",
+        "description": "tests.test_api",
+        "peekOfCode": "def test_predict_missing_features():\n    \"\"\"\n        Test 2: Vérifier que l'API gère bien l'erreur si on lui donne trop peu de colonnes\n    \"\"\"\n    with TestClient(app) as client:\n        #On fimule un client avec seuelement 3 features (le modèle en attend 239)\n        donnees_incompletes = {\n            \"features\": {\n                \"EXT_SOURCE_2\": 0.5,\n                \"DAYS_BIRTH\": -15000,",
+        "detail": "tests.test_api",
+        "documentation": {}
+    },
+    {
+        "label": "test_predict_bad_format",
+        "kind": 2,
+        "importPath": "tests.test_api",
+        "description": "tests.test_api",
+        "peekOfCode": "def test_predict_bad_format():\n    \"\"\"Test 3 : Vérifier que FastAPI bloque les requêtes mal formatées\"\"\"\n    with TestClient(app) as client:\n        #On envoie un format qui ne respecte pas le dictionnaire \"features\" attendu\n        mauvais_format = {\"cle_inconnue\": 123} \n        response = client.post(\"/predict\", json=mauvais_format)\n        # Le code 422 signifie \"Unprocessable Entity\" (données non conformes au schéma Pydantic)\n        assert response.status_code == 422",
+        "detail": "tests.test_api",
         "documentation": {}
     }
 ]
