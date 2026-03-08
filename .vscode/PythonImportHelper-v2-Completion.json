@@ -590,7 +590,7 @@
         "kind": 5,
         "importPath": "simulate_traffic",
         "description": "simulate_traffic",
-        "peekOfCode": "df = pd.read_csv(\"./data/reference_data.csv\").sample(50)\nprint(f\"{df.shape[0]} lignes chargées. Voici un aperçu :\")\n# --- CRÉATION DU FAUX DATA DRIFT ---\n# On va truquer une colonne importante (ex: on divise l'âge par 2)\n# pour que l'outil Evidently panique et détecte une anomalie !\n# (Si tu n'as pas de colonne DAYS_BIRTH, change le nom par une colonne qui existe chez toi)\nif \"DAYS_BIRTH\" in df.columns:\n    df[\"DAYS_BIRTH\"] = df[\"DAYS_BIRTH\"] * 0.5\n    print(\"Faux Data Drift appliqué sur DAYS_BIRTH !\")\n# L'URL de ton API en local",
+        "peekOfCode": "df = pd.read_csv(\"./data/reference_data.csv\").sample(50)\nprint(f\"{df.shape[0]} lignes chargées. Voici un aperçu :\")\n# --- CRÉATION DU FAUX DATA DRIFT ---\n#On va truquer une colonne importante (ex: on divise l'âge par 2)\n#pour que l'outil Evidently panique et détecte une anomalie !\nif \"DAYS_BIRTH\" in df.columns:\n    df[\"DAYS_BIRTH\"] = df[\"DAYS_BIRTH\"] * 0.5\n    print(\"Faux Data Drift appliqué sur DAYS_BIRTH !\")\n#L'URL de l' API en local\nAPI_URL = \"http://127.0.0.1:8000/predict\"",
         "detail": "simulate_traffic",
         "documentation": {}
     },
@@ -599,7 +599,7 @@
         "kind": 5,
         "importPath": "simulate_traffic",
         "description": "simulate_traffic",
-        "peekOfCode": "API_URL = \"http://127.0.0.1:8000/predict\"\nprint(\"Début de l'envoi des requêtes à l'API...\")\nreussites = 0\nfor index, row in df.iterrows():\n    # On transforme la ligne Excel en dictionnaire Python\n    features_dict = row.to_dict()\n    # On prépare le format attendu par ton API {\"features\": {...}}\n    payload = {\"features\": features_dict}\n    try:\n        response = requests.post(API_URL, json=payload)",
+        "peekOfCode": "API_URL = \"http://127.0.0.1:8000/predict\"\nprint(\"Début de l'envoi des requêtes à l'API...\")\nreussites = 0\nfor index, row in df.iterrows():\n    #On transforme la ligne Excel en dictionnaire Python\n    features_dict = row.to_dict()\n    #Préparer le format attendu par ton API {\"features\": {...}}\n    payload = {\"features\": features_dict}\n    try:\n        response = requests.post(API_URL, json=payload)",
         "detail": "simulate_traffic",
         "documentation": {}
     },
@@ -608,7 +608,7 @@
         "kind": 5,
         "importPath": "simulate_traffic",
         "description": "simulate_traffic",
-        "peekOfCode": "reussites = 0\nfor index, row in df.iterrows():\n    # On transforme la ligne Excel en dictionnaire Python\n    features_dict = row.to_dict()\n    # On prépare le format attendu par ton API {\"features\": {...}}\n    payload = {\"features\": features_dict}\n    try:\n        response = requests.post(API_URL, json=payload)\n        if response.status_code == 200:\n            reussites += 1",
+        "peekOfCode": "reussites = 0\nfor index, row in df.iterrows():\n    #On transforme la ligne Excel en dictionnaire Python\n    features_dict = row.to_dict()\n    #Préparer le format attendu par ton API {\"features\": {...}}\n    payload = {\"features\": features_dict}\n    try:\n        response = requests.post(API_URL, json=payload)\n        if response.status_code == 200:\n            reussites += 1",
         "detail": "simulate_traffic",
         "documentation": {}
     }
