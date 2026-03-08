@@ -1,0 +1,13 @@
+simulate_traffic.py
+logs/
+*.jsonl
+*.log
+drift_report.html
+test.html
+.DS_Store
+
+
+# Caches de Python et Pytest
+__pycache__/
+.pytest_cache/
+.coverage

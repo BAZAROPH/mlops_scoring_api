@@ -1,0 +1,77 @@
+name: CI Pipeline API Scoring
+
+#1 On dit à Github de se déclencher à chaque push sur la branche main ou master
+on:
+    push:
+        branches:
+            - main
+            - master
+
+jobs:
+    #--- 1ère Tâche : L'Intégration Continue (CI) ---
+    test-api:
+        #On demande un serveur linux
+        runs-on: ubuntu-latest
+        
+        steps:
+            #Récupérer notre code
+            -   name: Récupération du code
+                uses: actions/checkout@v2
+
+            #Intaller python sur le serveur
+            -   name: Installation Python
+                uses: actions/setup-python@v4
+                with:
+                    python-version: "3.11"
+
+            #Installer les librairies du projet
+            -   name: Installation des dépendances
+                run: |
+                    python -m pip install --upgrade pip
+                    pip install -r requirements.txt
+                    pip install pytest pytest-cov lightgbm scikit-learn pandas joblib
+
+            #Lancer la commande de test
+            -   name: Lancement des tests automatisés
+                run: |
+                    PYTHONPATH=. pytest --cov=app tests/ -v --cov=app
+
+    # --- 2ème Tâche : Le Déploiement Continu (CD) ---
+    deploy-api:
+        #Nous déployons que si les tests passent
+        needs: test-api
+        runs-on: ubuntu-latest
+        steps:
+            -   name: Récupération du code
+                uses: actions/checkout@v2
+                with:
+                    fetch-depth: 0  # Récupérer tout l'historique pour les tags
+                    
+            -   name: Envoi sur Hugging Face
+                env:
+                    HF_TOKEN: ${{ secrets.HF_TOKEN }}
+                run: |
+                    #On donne une identité à notre robot pour qu'il puisse signer l'envoi
+                    git config --global user.email "bot@github.com"
+                    git config --global user.name "GitHub Actions Bot"
+                    
+                    # On télécharge l'espace Hugging Face
+                    git clone https://bazaroph:${HF_TOKEN}@huggingface.co/spaces/bazaroph/api-scoring-credit hf_space
+                    
+                    #On copie tout le projet dans ce dossier (sauf les éléments cachés de GitHub)
+                    rsync -av --exclude='.git' --exclude='hf_space' ./ hf_space/
+                    
+                    #On rentre dans le dossier
+                    cd hf_space
+                    
+                    #On dit à Git de traiter le modèle comme un gros fichier (LFS)
+                    git lfs install
+                    git lfs track "*.joblib"
+                    
+                    #On sauvegarde et on pousse sur Hugging Face !
+                    git add .
+                    git commit -m "Déploiement automatique depuis GitHub"
+                    git push https://bazaroph:${HF_TOKEN}@huggingface.co/spaces/bazaroph/api-scoring-credit main
+            
+
+            

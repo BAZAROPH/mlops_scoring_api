@@ -1,0 +1,615 @@
+[
+    {
+        "label": "Sequence",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Union",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Sequence",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Union",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Sequence",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Union",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Sequence",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Union",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Sequence",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Union",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "sqlalchemy",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "sqlalchemy",
+        "description": "sqlalchemy",
+        "detail": "sqlalchemy",
+        "documentation": {}
+    },
+    {
+        "label": "op",
+        "importPath": "alembic",
+        "description": "alembic",
+        "isExtraImport": true,
+        "detail": "alembic",
+        "documentation": {}
+    },
+    {
+        "label": "op",
+        "importPath": "alembic",
+        "description": "alembic",
+        "isExtraImport": true,
+        "detail": "alembic",
+        "documentation": {}
+    },
+    {
+        "label": "op",
+        "importPath": "alembic",
+        "description": "alembic",
+        "isExtraImport": true,
+        "detail": "alembic",
+        "documentation": {}
+    },
+    {
+        "label": "op",
+        "importPath": "alembic",
+        "description": "alembic",
+        "isExtraImport": true,
+        "detail": "alembic",
+        "documentation": {}
+    },
+    {
+        "label": "context",
+        "importPath": "alembic",
+        "description": "alembic",
+        "isExtraImport": true,
+        "detail": "alembic",
+        "documentation": {}
+    },
+    {
+        "label": "fileConfig",
+        "importPath": "logging.config",
+        "description": "logging.config",
+        "isExtraImport": true,
+        "detail": "logging.config",
+        "documentation": {}
+    },
+    {
+        "label": "ArtifactModel",
+        "importPath": "evidently.ui.service.storage.sql.artifacts",
+        "description": "evidently.ui.service.storage.sql.artifacts",
+        "isExtraImport": true,
+        "detail": "evidently.ui.service.storage.sql.artifacts",
+        "documentation": {}
+    },
+    {
+        "label": "ArtifactVersionModel",
+        "importPath": "evidently.ui.service.storage.sql.artifacts",
+        "description": "evidently.ui.service.storage.sql.artifacts",
+        "isExtraImport": true,
+        "detail": "evidently.ui.service.storage.sql.artifacts",
+        "documentation": {}
+    },
+    {
+        "label": "Base",
+        "importPath": "evidently.ui.service.storage.sql.models",
+        "description": "evidently.ui.service.storage.sql.models",
+        "isExtraImport": true,
+        "detail": "evidently.ui.service.storage.sql.models",
+        "documentation": {}
+    },
+    {
+        "label": "BlobSQLModel",
+        "importPath": "evidently.ui.service.storage.sql.models",
+        "description": "evidently.ui.service.storage.sql.models",
+        "isExtraImport": true,
+        "detail": "evidently.ui.service.storage.sql.models",
+        "documentation": {}
+    },
+    {
+        "label": "MetricsSQLModel",
+        "importPath": "evidently.ui.service.storage.sql.models",
+        "description": "evidently.ui.service.storage.sql.models",
+        "isExtraImport": true,
+        "detail": "evidently.ui.service.storage.sql.models",
+        "documentation": {}
+    },
+    {
+        "label": "PointSQLModel",
+        "importPath": "evidently.ui.service.storage.sql.models",
+        "description": "evidently.ui.service.storage.sql.models",
+        "isExtraImport": true,
+        "detail": "evidently.ui.service.storage.sql.models",
+        "documentation": {}
+    },
+    {
+        "label": "ProjectSQLModel",
+        "importPath": "evidently.ui.service.storage.sql.models",
+        "description": "evidently.ui.service.storage.sql.models",
+        "isExtraImport": true,
+        "detail": "evidently.ui.service.storage.sql.models",
+        "documentation": {}
+    },
+    {
+        "label": "SnapshotSQLModel",
+        "importPath": "evidently.ui.service.storage.sql.models",
+        "description": "evidently.ui.service.storage.sql.models",
+        "isExtraImport": true,
+        "detail": "evidently.ui.service.storage.sql.models",
+        "documentation": {}
+    },
+    {
+        "label": "UserSQLModel",
+        "importPath": "evidently.ui.service.storage.sql.models",
+        "description": "evidently.ui.service.storage.sql.models",
+        "isExtraImport": true,
+        "detail": "evidently.ui.service.storage.sql.models",
+        "documentation": {}
+    },
+    {
+        "label": "TraceSpanModel",
+        "importPath": "evidently.ui.service.tracing.storage.sql",
+        "description": "evidently.ui.service.tracing.storage.sql",
+        "isExtraImport": true,
+        "detail": "evidently.ui.service.tracing.storage.sql",
+        "documentation": {}
+    },
+    {
+        "label": "FastAPI",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
+        "label": "HTTPException",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
+        "label": "BaseModel",
+        "importPath": "pydantic",
+        "description": "pydantic",
+        "isExtraImport": true,
+        "detail": "pydantic",
+        "documentation": {}
+    },
+    {
+        "label": "asynccontextmanager",
+        "importPath": "contextlib",
+        "description": "contextlib",
+        "isExtraImport": true,
+        "detail": "contextlib",
+        "documentation": {}
+    },
+    {
+        "label": "joblib",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "joblib",
+        "description": "joblib",
+        "detail": "joblib",
+        "documentation": {}
+    },
+    {
+        "label": "pandas",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "pandas",
+        "description": "pandas",
+        "detail": "pandas",
+        "documentation": {}
+    },
+    {
+        "label": "os",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "os",
+        "description": "os",
+        "detail": "os",
+        "documentation": {}
+    },
+    {
+        "label": "datetime",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "time",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "time",
+        "description": "time",
+        "detail": "time",
+        "documentation": {}
+    },
+    {
+        "label": "json",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "json",
+        "description": "json",
+        "detail": "json",
+        "documentation": {}
+    },
+    {
+        "label": "TestClient",
+        "importPath": "fastapi.testclient",
+        "description": "fastapi.testclient",
+        "isExtraImport": true,
+        "detail": "fastapi.testclient",
+        "documentation": {}
+    },
+    {
+        "label": "app",
+        "importPath": "app.main",
+        "description": "app.main",
+        "isExtraImport": true,
+        "detail": "app.main",
+        "documentation": {}
+    },
+    {
+        "label": "streamlit",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "streamlit",
+        "description": "streamlit",
+        "detail": "streamlit",
+        "documentation": {}
+    },
+    {
+        "label": "Report",
+        "importPath": "evidently",
+        "description": "evidently",
+        "isExtraImport": true,
+        "detail": "evidently",
+        "documentation": {}
+    },
+    {
+        "label": "DataDriftPreset",
+        "importPath": "evidently.presets",
+        "description": "evidently.presets",
+        "isExtraImport": true,
+        "detail": "evidently.presets",
+        "documentation": {}
+    },
+    {
+        "label": "streamlit.components.v1",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "streamlit.components.v1",
+        "description": "streamlit.components.v1",
+        "detail": "streamlit.components.v1",
+        "documentation": {}
+    },
+    {
+        "label": "requests",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "requests",
+        "description": "requests",
+        "detail": "requests",
+        "documentation": {}
+    },
+    {
+        "label": "upgrade",
+        "kind": 2,
+        "importPath": ".venv.evidently.ui.service.storage.sql.migrations.versions.2025_01_15_1200_add_trace_spans",
+        "description": ".venv.evidently.ui.service.storage.sql.migrations.versions.2025_01_15_1200_add_trace_spans",
+        "peekOfCode": "def upgrade() -> None:\n    op.create_table(\n        \"trace_spans\",\n        sa.Column(\"id\", sa.Integer(), autoincrement=True, nullable=False),\n        sa.Column(\"timestamp\", sa.DateTime(), nullable=False),\n        sa.Column(\"trace_id\", sa.Uuid(), nullable=False),\n        sa.Column(\"export_id\", sa.Uuid(), nullable=False),\n        sa.Column(\"trace_state\", sa.String(), nullable=False),\n        sa.Column(\"span_id\", sa.String(), nullable=False),\n        sa.Column(\"parent_span_id\", sa.String(), nullable=True),",
+        "detail": ".venv.evidently.ui.service.storage.sql.migrations.versions.2025_01_15_1200_add_trace_spans",
+        "documentation": {}
+    },
+    {
+        "label": "downgrade",
+        "kind": 2,
+        "importPath": ".venv.evidently.ui.service.storage.sql.migrations.versions.2025_01_15_1200_add_trace_spans",
+        "description": ".venv.evidently.ui.service.storage.sql.migrations.versions.2025_01_15_1200_add_trace_spans",
+        "peekOfCode": "def downgrade() -> None:\n    op.drop_index(\"trace_spans_timestamp_idx\", table_name=\"trace_spans\")\n    op.drop_index(\"trace_spans_trace_id_idx\", table_name=\"trace_spans\")\n    op.drop_index(\"trace_spans_export_id_idx\", table_name=\"trace_spans\")\n    op.drop_table(\"trace_spans\")",
+        "detail": ".venv.evidently.ui.service.storage.sql.migrations.versions.2025_01_15_1200_add_trace_spans",
+        "documentation": {}
+    },
+    {
+        "label": "upgrade",
+        "kind": 2,
+        "importPath": ".venv.evidently.ui.service.storage.sql.migrations.versions.2025_10_31_1654_ea07771bba05_initial",
+        "description": ".venv.evidently.ui.service.storage.sql.migrations.versions.2025_10_31_1654_ea07771bba05_initial",
+        "peekOfCode": "def upgrade() -> None:\n    # ### commands auto generated by Alembic - please adjust! ###\n    op.create_table(\n        \"blobs\",\n        sa.Column(\"id\", sa.String(), nullable=False),\n        sa.Column(\"data\", sa.LargeBinary(), nullable=False),\n        sa.Column(\"size\", sa.Integer(), nullable=False),\n        sa.PrimaryKeyConstraint(\"id\"),\n    )\n    op.create_table(",
+        "detail": ".venv.evidently.ui.service.storage.sql.migrations.versions.2025_10_31_1654_ea07771bba05_initial",
+        "documentation": {}
+    },
+    {
+        "label": "downgrade",
+        "kind": 2,
+        "importPath": ".venv.evidently.ui.service.storage.sql.migrations.versions.2025_10_31_1654_ea07771bba05_initial",
+        "description": ".venv.evidently.ui.service.storage.sql.migrations.versions.2025_10_31_1654_ea07771bba05_initial",
+        "peekOfCode": "def downgrade() -> None:\n    # ### commands auto generated by Alembic - please adjust! ###\n    op.drop_index(\"ix_snapshot_datasets_dataset_id\", table_name=\"snapshot_datasets\")\n    op.drop_index(\"ix_snapshot_datasets_snapshot_id\", table_name=\"snapshot_datasets\")\n    op.drop_table(\"snapshot_datasets\")\n    op.drop_table(\"datasets\")\n    op.drop_index(\"points_project_snapshot_idx\", table_name=\"points\")\n    op.drop_table(\"points\")\n    op.drop_index(\"snapshots_project_id_idx\", table_name=\"snapshots\")\n    op.drop_table(\"snapshots\")",
+        "detail": ".venv.evidently.ui.service.storage.sql.migrations.versions.2025_10_31_1654_ea07771bba05_initial",
+        "documentation": {}
+    },
+    {
+        "label": "upgrade",
+        "kind": 2,
+        "importPath": ".venv.evidently.ui.service.storage.sql.migrations.versions.2025_11_04_1702_add_datasets",
+        "description": ".venv.evidently.ui.service.storage.sql.migrations.versions.2025_11_04_1702_add_datasets",
+        "peekOfCode": "def upgrade() -> None:\n    # Datasets table is now created in the initial migration\n    # This migration is kept for migration history compatibility\n    pass\ndef downgrade() -> None:\n    # Datasets table is dropped in the initial migration downgrade\n    pass",
+        "detail": ".venv.evidently.ui.service.storage.sql.migrations.versions.2025_11_04_1702_add_datasets",
+        "documentation": {}
+    },
+    {
+        "label": "downgrade",
+        "kind": 2,
+        "importPath": ".venv.evidently.ui.service.storage.sql.migrations.versions.2025_11_04_1702_add_datasets",
+        "description": ".venv.evidently.ui.service.storage.sql.migrations.versions.2025_11_04_1702_add_datasets",
+        "peekOfCode": "def downgrade() -> None:\n    # Datasets table is dropped in the initial migration downgrade\n    pass",
+        "detail": ".venv.evidently.ui.service.storage.sql.migrations.versions.2025_11_04_1702_add_datasets",
+        "documentation": {}
+    },
+    {
+        "label": "upgrade",
+        "kind": 2,
+        "importPath": ".venv.evidently.ui.service.storage.sql.migrations.versions.2025_11_26_1629_add_artifacts",
+        "description": ".venv.evidently.ui.service.storage.sql.migrations.versions.2025_11_26_1629_add_artifacts",
+        "peekOfCode": "def upgrade() -> None:\n    op.create_table(\n        \"artifacts\",\n        sa.Column(\"id\", sa.Uuid(), nullable=False),\n        sa.Column(\"project_id\", sa.Uuid(), nullable=False),\n        sa.Column(\"author_id\", sa.Uuid(), nullable=True),\n        sa.Column(\"created_at\", sa.DateTime(), nullable=False),\n        sa.Column(\"updated_at\", sa.DateTime(), nullable=False),\n        sa.Column(\"description\", sa.String(), nullable=True),\n        sa.Column(\"name\", sa.String(), nullable=False),",
+        "detail": ".venv.evidently.ui.service.storage.sql.migrations.versions.2025_11_26_1629_add_artifacts",
+        "documentation": {}
+    },
+    {
+        "label": "downgrade",
+        "kind": 2,
+        "importPath": ".venv.evidently.ui.service.storage.sql.migrations.versions.2025_11_26_1629_add_artifacts",
+        "description": ".venv.evidently.ui.service.storage.sql.migrations.versions.2025_11_26_1629_add_artifacts",
+        "peekOfCode": "def downgrade() -> None:\n    op.drop_index(op.f(\"ix_artifact_versions_version\"), table_name=\"artifact_versions\")\n    op.drop_table(\"artifact_versions\")\n    op.drop_index(op.f(\"ix_artifacts_name\"), table_name=\"artifacts\")\n    op.drop_table(\"artifacts\")",
+        "detail": ".venv.evidently.ui.service.storage.sql.migrations.versions.2025_11_26_1629_add_artifacts",
+        "documentation": {}
+    },
+    {
+        "label": "upgrade",
+        "kind": 2,
+        "importPath": ".venv.evidently.ui.service.storage.sql.migrations.versions.2025_12_24_1157_df11816c8a4e_add_trace_comments",
+        "description": ".venv.evidently.ui.service.storage.sql.migrations.versions.2025_12_24_1157_df11816c8a4e_add_trace_comments",
+        "peekOfCode": "def upgrade() -> None:\n    op.add_column(\"datasets\", sa.Column(\"human_feedback_custom_shortcut_labels\", sa.JSON(), nullable=True))\ndef downgrade() -> None:\n    op.drop_column(\"datasets\", \"human_feedback_custom_shortcut_labels\")",
+        "detail": ".venv.evidently.ui.service.storage.sql.migrations.versions.2025_12_24_1157_df11816c8a4e_add_trace_comments",
+        "documentation": {}
+    },
+    {
+        "label": "downgrade",
+        "kind": 2,
+        "importPath": ".venv.evidently.ui.service.storage.sql.migrations.versions.2025_12_24_1157_df11816c8a4e_add_trace_comments",
+        "description": ".venv.evidently.ui.service.storage.sql.migrations.versions.2025_12_24_1157_df11816c8a4e_add_trace_comments",
+        "peekOfCode": "def downgrade() -> None:\n    op.drop_column(\"datasets\", \"human_feedback_custom_shortcut_labels\")",
+        "detail": ".venv.evidently.ui.service.storage.sql.migrations.versions.2025_12_24_1157_df11816c8a4e_add_trace_comments",
+        "documentation": {}
+    },
+    {
+        "label": "run_migrations_offline",
+        "kind": 2,
+        "importPath": ".venv.evidently.ui.service.storage.sql.migrations.env",
+        "description": ".venv.evidently.ui.service.storage.sql.migrations.env",
+        "peekOfCode": "def run_migrations_offline() -> None:\n    \"\"\"Run migrations in 'offline' mode.\n    This configures the context with just a URL\n    and not an Engine, though an Engine is acceptable\n    here as well.  By skipping the Engine creation\n    we don't even need a DBAPI to be available.\n    Calls to context.execute() here emit the given string to the\n    script output.\n    \"\"\"\n    # Get config from context (it should be available when Alembic runs this)",
+        "detail": ".venv.evidently.ui.service.storage.sql.migrations.env",
+        "documentation": {}
+    },
+    {
+        "label": "run_migrations_online",
+        "kind": 2,
+        "importPath": ".venv.evidently.ui.service.storage.sql.migrations.env",
+        "description": ".venv.evidently.ui.service.storage.sql.migrations.env",
+        "peekOfCode": "def run_migrations_online() -> None:\n    \"\"\"Run migrations in 'online' mode.\n    In this scenario we need to create an Engine\n    and associate a connection with the context.\n    \"\"\"\n    # Get config from context (it should be available when Alembic runs this)\n    config = context.config\n    # Check if a connection/engine was provided via config attributes\n    connectable = config.attributes.get(\"connection\", None)\n    if connectable is None:",
+        "detail": ".venv.evidently.ui.service.storage.sql.migrations.env",
+        "documentation": {}
+    },
+    {
+        "label": "config",
+        "kind": 5,
+        "importPath": ".venv.evidently.ui.service.storage.sql.migrations.env",
+        "description": ".venv.evidently.ui.service.storage.sql.migrations.env",
+        "peekOfCode": "config = getattr(context, \"config\", None)\n# Interpret the config file for Python logging.\n# This line sets up loggers basically.\n# Only configure logging when running via Alembic CLI (not programmatically)\n# This prevents overriding the application's logging configuration when migrations\n# are run from within the application (e.g., on startup)\nif config is not None and config.config_file_name is not None:\n    # Check if we're being called from Alembic CLI vs programmatically\n    # When called programmatically (e.g., via migrate_database), we don't want\n    # to override the application's logging configuration",
+        "detail": ".venv.evidently.ui.service.storage.sql.migrations.env",
+        "documentation": {}
+    },
+    {
+        "label": "target_metadata",
+        "kind": 5,
+        "importPath": ".venv.evidently.ui.service.storage.sql.migrations.env",
+        "description": ".venv.evidently.ui.service.storage.sql.migrations.env",
+        "peekOfCode": "target_metadata = Base.metadata\n# other values from the config, defined by the needs of env.py,\n# can be acquired:\n# my_important_option = config.get_main_option(\"my_important_option\")\n# ... etc.\ndef run_migrations_offline() -> None:\n    \"\"\"Run migrations in 'offline' mode.\n    This configures the context with just a URL\n    and not an Engine, though an Engine is acceptable\n    here as well.  By skipping the Engine creation",
+        "detail": ".venv.evidently.ui.service.storage.sql.migrations.env",
+        "documentation": {}
+    },
+    {
+        "label": "ClientData",
+        "kind": 6,
+        "importPath": "app.main",
+        "description": "app.main",
+        "peekOfCode": "class ClientData(BaseModel):\n    features: dict\n#4 rOUTE D'accueil\n@app.get(\"/\")\ndef read_root():\n    return {\"message\": \"Bienvenue sur l'API de Scoring Crédit. Visitez /docs pour la documentation.\"}\n#5 Route de prédiction\n@app.post(\"/predict\")\ndef predict(data: ClientData):\n    #On vérifie si le modèle a bien été chargé au démarrage",
+        "detail": "app.main",
+        "documentation": {}
+    },
+    {
+        "label": "read_root",
+        "kind": 2,
+        "importPath": "app.main",
+        "description": "app.main",
+        "peekOfCode": "def read_root():\n    return {\"message\": \"Bienvenue sur l'API de Scoring Crédit. Visitez /docs pour la documentation.\"}\n#5 Route de prédiction\n@app.post(\"/predict\")\ndef predict(data: ClientData):\n    #On vérifie si le modèle a bien été chargé au démarrage\n    if \"model_scoring\" not in ml_models:\n        raise HTTPException(status_code=500, detail=\"Le modèle n'est pas prêt.\")\n    #Lancer le chronomètre pour mesurer le temps d'exécution\n    start_time = time.time()",
+        "detail": "app.main",
+        "documentation": {}
+    },
+    {
+        "label": "predict",
+        "kind": 2,
+        "importPath": "app.main",
+        "description": "app.main",
+        "peekOfCode": "def predict(data: ClientData):\n    #On vérifie si le modèle a bien été chargé au démarrage\n    if \"model_scoring\" not in ml_models:\n        raise HTTPException(status_code=500, detail=\"Le modèle n'est pas prêt.\")\n    #Lancer le chronomètre pour mesurer le temps d'exécution\n    start_time = time.time()\n    try:\n        df = pd.DataFrame([data.features])\n        model = ml_models[\"model_scoring\"]\n        #Prédiction (classe 1 = défaut)",
+        "detail": "app.main",
+        "documentation": {}
+    },
+    {
+        "label": "ml_models",
+        "kind": 5,
+        "importPath": "app.main",
+        "description": "app.main",
+        "peekOfCode": "ml_models = {}\n#1 Gestion de la durée de vie de l'API\n@asynccontextmanager\nasync def lifespan(app: FastAPI):\n    #Code qui s'exeécute uniquement au démarrage de l'API\n    base_dir = os.path.dirname(os.path.abspath(__file__))\n    model_path = os.path.join(base_dir, \"..\", \"model\", \"model_scoring.joblib\")\n    try:\n        #On charge le modèle et on le stocke dans notre dictionnaire\n        ml_models[\"model_scoring\"] = joblib.load(model_path)",
+        "detail": "app.main",
+        "documentation": {}
+    },
+    {
+        "label": "app",
+        "kind": 5,
+        "importPath": "app.main",
+        "description": "app.main",
+        "peekOfCode": "app = FastAPI(\n    title=\"API de Scoring Crédit\",\n    description=\"Cette API évalue la probabilité de défaut de paiement d'un client.\",\n    version=\"1.0.0\",\n    lifespan=lifespan\n)\n#3 Définition du modèle de données d'entrée\nclass ClientData(BaseModel):\n    features: dict\n#4 rOUTE D'accueil",
+        "detail": "app.main",
+        "documentation": {}
+    },
+    {
+        "label": "test_read_root",
+        "kind": 2,
+        "importPath": "tests.test_api",
+        "description": "tests.test_api",
+        "peekOfCode": "def test_read_root():\n    \"\"\"\n        Test 1: Vérifier que la page d'accueil répond bien\n    \"\"\"\n    with TestClient(app) as client:\n        response = client.get(\"/\")\n        assert response.status_code == 200\n        assert \"Bienvenue\" in response.json()[\"message\"]\ndef test_predict_missing_features():\n    \"\"\"",
+        "detail": "tests.test_api",
+        "documentation": {}
+    },
+    {
+        "label": "test_predict_missing_features",
+        "kind": 2,
+        "importPath": "tests.test_api",
+        "description": "tests.test_api",
+        "peekOfCode": "def test_predict_missing_features():\n    \"\"\"\n        Test 2: Vérifier que l'API gère bien l'erreur si on lui donne trop peu de colonnes\n    \"\"\"\n    with TestClient(app) as client:\n        #On fimule un client avec seuelement 3 features (le modèle en attend 239)\n        donnees_incompletes = {\n            \"features\": {\n                \"EXT_SOURCE_2\": 0.5,\n                \"DAYS_BIRTH\": -15000,",
+        "detail": "tests.test_api",
+        "documentation": {}
+    },
+    {
+        "label": "test_predict_bad_format",
+        "kind": 2,
+        "importPath": "tests.test_api",
+        "description": "tests.test_api",
+        "peekOfCode": "def test_predict_bad_format():\n    \"\"\"Test 3 : Vérifier que FastAPI bloque les requêtes mal formatées\"\"\"\n    with TestClient(app) as client:\n        #On envoie un format qui ne respecte pas le dictionnaire \"features\" attendu\n        mauvais_format = {\"cle_inconnue\": 123} \n        response = client.post(\"/predict\", json=mauvais_format)\n        # Le code 422 signifie \"Unprocessable Entity\" (données non conformes au schéma Pydantic)\n        assert response.status_code == 422",
+        "detail": "tests.test_api",
+        "documentation": {}
+    },
+    {
+        "label": "load_reference_data",
+        "kind": 2,
+        "importPath": "dashboard",
+        "description": "dashboard",
+        "peekOfCode": "def load_reference_data():\n    return pd.read_csv(\"./data/reference_data.csv\")\n#2 Charger les données de production depuis nos los API\ndef log_current_data():\n    log_file = \"./logs/api_logs.jsonl\"\n    if not os.path.exists(log_file):\n        return pd.DataFrame()  #Retourne un DataFrame vide si le fichier n'existe pas\n    data = []\n    with open(log_file, \"r\") as f:\n        for line in f:",
+        "detail": "dashboard",
+        "documentation": {}
+    },
+    {
+        "label": "log_current_data",
+        "kind": 2,
+        "importPath": "dashboard",
+        "description": "dashboard",
+        "peekOfCode": "def log_current_data():\n    log_file = \"./logs/api_logs.jsonl\"\n    if not os.path.exists(log_file):\n        return pd.DataFrame()  #Retourne un DataFrame vide si le fichier n'existe pas\n    data = []\n    with open(log_file, \"r\") as f:\n        for line in f:\n            log_entry = json.loads(line)\n            data.append(log_entry[\"inputs\"])\n    return pd.DataFrame(data)",
+        "detail": "dashboard",
+        "documentation": {}
+    },
+    {
+        "label": "curr_data",
+        "kind": 5,
+        "importPath": "dashboard",
+        "description": "dashboard",
+        "peekOfCode": "curr_data = log_current_data()\nif curr_data.empty:\n    st.warning(\"Aucune donnée de production trouvée. Veuillez envoyer des requêtes à l'API pour voir les résultats.\")\nelse:\n    st.success(f\"Données de production (logs) chargées : {curr_data.shape[0]} requêtes.\")\n    if st.button(\"Générer le rapport de Data Drift (Evidently)\"):\n        with st.spinner(\"Analyse en cours... Cela peut prendre quelques secondes.\"):\n            #on demande à evidently de calculer le Data Drift\n            drift_report = Report(metrics=[DataDriftPreset()])\n            #On aligne les cols au cas où",
+        "detail": "dashboard",
+        "documentation": {}
+    },
+    {
+        "label": "df",
+        "kind": 5,
+        "importPath": "simulate_traffic",
+        "description": "simulate_traffic",
+        "peekOfCode": "df = pd.read_csv(\"./data/reference_data.csv\").sample(50)\nprint(f\"{df.shape[0]} lignes chargées. Voici un aperçu :\")\n# --- CRÉATION DU FAUX DATA DRIFT ---\n# On va truquer une colonne importante (ex: on divise l'âge par 2)\n# pour que l'outil Evidently panique et détecte une anomalie !\n# (Si tu n'as pas de colonne DAYS_BIRTH, change le nom par une colonne qui existe chez toi)\nif \"DAYS_BIRTH\" in df.columns:\n    df[\"DAYS_BIRTH\"] = df[\"DAYS_BIRTH\"] * 0.5\n    print(\"Faux Data Drift appliqué sur DAYS_BIRTH !\")\n# L'URL de ton API en local",
+        "detail": "simulate_traffic",
+        "documentation": {}
+    },
+    {
+        "label": "API_URL",
+        "kind": 5,
+        "importPath": "simulate_traffic",
+        "description": "simulate_traffic",
+        "peekOfCode": "API_URL = \"http://127.0.0.1:8000/predict\"\nprint(\"Début de l'envoi des requêtes à l'API...\")\nreussites = 0\nfor index, row in df.iterrows():\n    # On transforme la ligne Excel en dictionnaire Python\n    features_dict = row.to_dict()\n    # On prépare le format attendu par ton API {\"features\": {...}}\n    payload = {\"features\": features_dict}\n    try:\n        response = requests.post(API_URL, json=payload)",
+        "detail": "simulate_traffic",
+        "documentation": {}
+    },
+    {
+        "label": "reussites",
+        "kind": 5,
+        "importPath": "simulate_traffic",
+        "description": "simulate_traffic",
+        "peekOfCode": "reussites = 0\nfor index, row in df.iterrows():\n    # On transforme la ligne Excel en dictionnaire Python\n    features_dict = row.to_dict()\n    # On prépare le format attendu par ton API {\"features\": {...}}\n    payload = {\"features\": features_dict}\n    try:\n        response = requests.post(API_URL, json=payload)\n        if response.status_code == 200:\n            reussites += 1",
+        "detail": "simulate_traffic",
+        "documentation": {}
+    }
+]
