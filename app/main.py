@@ -63,6 +63,14 @@ def predict(data: ClientData):
     try:
         #---- /df = pd.DataFrame([data.features])
         model = ml_models["model_scoring"]
+
+        #Vérifier que le client a bien envoyé le bon nombre de variables
+        if hasattr(model, 'feature_names_in_'):
+            expected_count = len(model.feature_names_in_)
+            if len(data.features) != expected_count:
+                #Si ça ne correspond pas, on lève une erreur exprès
+                raise ValueError(f"Le modèle attend {expected_count} features, mais a reçu {len(data.features)}.")
+
         # On s'assure de respecter l'ordre exact des colonnes attendu par le modèle
         feature_names = list(model.feature_names_in_) if hasattr(model, 'feature_names_in_') else list(data.features.keys())
 
@@ -72,7 +80,7 @@ def predict(data: ClientData):
         
         
         #Prédiction (classe 1 = défaut)
-        
+
         #---/ model.predict_proba renvoie [[proba_classe_0, proba_classe_1]]
         #---/ proba_defaut = model.predict_proba(df)[0][1]
 
