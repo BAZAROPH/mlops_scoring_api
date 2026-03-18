@@ -302,6 +302,42 @@
         "documentation": {}
     },
     {
+        "label": "cProfile",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "cProfile",
+        "description": "cProfile",
+        "detail": "cProfile",
+        "documentation": {}
+    },
+    {
+        "label": "pstats",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "pstats",
+        "description": "pstats",
+        "detail": "pstats",
+        "documentation": {}
+    },
+    {
+        "label": "numpy",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "numpy",
+        "description": "numpy",
+        "detail": "numpy",
+        "documentation": {}
+    },
+    {
+        "label": "warnings",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "warnings",
+        "description": "warnings",
+        "detail": "warnings",
+        "documentation": {}
+    },
+    {
         "label": "TestClient",
         "importPath": "fastapi.testclient",
         "description": "fastapi.testclient",
@@ -509,7 +545,7 @@
         "kind": 2,
         "importPath": "app.main",
         "description": "app.main",
-        "peekOfCode": "def predict(data: ClientData):\n    #On vérifie si le modèle a bien été chargé au démarrage\n    if \"model_scoring\" not in ml_models:\n        raise HTTPException(status_code=500, detail=\"Le modèle n'est pas prêt.\")\n    #Lancer le chronomètre pour mesurer le temps d'exécution\n    start_time = time.time()\n    try:\n        df = pd.DataFrame([data.features])\n        model = ml_models[\"model_scoring\"]\n        #Prédiction (classe 1 = défaut)",
+        "peekOfCode": "def predict(data: ClientData):\n    #On vérifie si le modèle a bien été chargé au démarrage\n    if \"model_scoring\" not in ml_models:\n        raise HTTPException(status_code=500, detail=\"Le modèle n'est pas prêt.\")\n    #Lancer le chronomètre pour mesurer le temps d'exécution\n    start_time = time.time()\n    try:\n        #---- /df = pd.DataFrame([data.features])\n        model = ml_models[\"model_scoring\"]\n        # On s'assure de respecter l'ordre exact des colonnes attendu par le modèle",
         "detail": "app.main",
         "documentation": {}
     },
@@ -529,6 +565,78 @@
         "description": "app.main",
         "peekOfCode": "app = FastAPI(\n    title=\"API de Scoring Crédit\",\n    description=\"Cette API évalue la probabilité de défaut de paiement d'un client.\",\n    version=\"1.0.0\",\n    lifespan=lifespan\n)\n#3 Définition du modèle de données d'entrée\nclass ClientData(BaseModel):\n    features: dict\n#4 rOUTE D'accueil",
         "detail": "app.main",
+        "documentation": {}
+    },
+    {
+        "label": "prediction_lente_actuelle",
+        "kind": 2,
+        "importPath": "profiling.profiler",
+        "description": "profiling.profiler",
+        "peekOfCode": "def prediction_lente_actuelle():\n    #Ce que fait l' API actuellement (avec DataFrame Pandas)\n    df = pd.DataFrame([features_dict])\n    return model.predict_proba(df)[0][1]\ndef prediction_optimisee():\n    #Ce qu'on va mettre en place (NumPy pur, sans DataFrame)\n    values = np.array([features_dict[col] for col in feature_names]).reshape(1, -1)\n    return model.predict_proba(values)[0][1]\nprint(\"PROFILING : VERSION LENTE (Pandas)\")\n#Lancement de la prédiction 100 fois pour bien voir le temps passé",
+        "detail": "profiling.profiler",
+        "documentation": {}
+    },
+    {
+        "label": "prediction_optimisee",
+        "kind": 2,
+        "importPath": "profiling.profiler",
+        "description": "profiling.profiler",
+        "peekOfCode": "def prediction_optimisee():\n    #Ce qu'on va mettre en place (NumPy pur, sans DataFrame)\n    values = np.array([features_dict[col] for col in feature_names]).reshape(1, -1)\n    return model.predict_proba(values)[0][1]\nprint(\"PROFILING : VERSION LENTE (Pandas)\")\n#Lancement de la prédiction 100 fois pour bien voir le temps passé\ncProfile.run('for _ in range(100): prediction_lente_actuelle()', 'stats_lente.prof')\np_lente = pstats.Stats('stats_lente.prof')\np_lente.strip_dirs().sort_stats('time').print_stats(5) # Affiche les 5 opérations les plus lentes\nprint(\"\\nPROFILING : VERSION OPTIMISÉE (Numpy)\")",
+        "detail": "profiling.profiler",
+        "documentation": {}
+    },
+    {
+        "label": "model",
+        "kind": 5,
+        "importPath": "profiling.profiler",
+        "description": "profiling.profiler",
+        "peekOfCode": "model = joblib.load(\"../model/model_scoring.joblib\")\ndf_test = pd.read_csv(\"../data/reference_data_train.csv\").head(1)\nfeatures_dict = df_test.to_dict(orient=\"records\")[0]\n# Récupérer les noms de features du modèle entraîné\nfeature_names = list(model.feature_names_in_) if hasattr(model, 'feature_names_in_') else list(features_dict.keys())\ndef prediction_lente_actuelle():\n    #Ce que fait l' API actuellement (avec DataFrame Pandas)\n    df = pd.DataFrame([features_dict])\n    return model.predict_proba(df)[0][1]\ndef prediction_optimisee():",
+        "detail": "profiling.profiler",
+        "documentation": {}
+    },
+    {
+        "label": "df_test",
+        "kind": 5,
+        "importPath": "profiling.profiler",
+        "description": "profiling.profiler",
+        "peekOfCode": "df_test = pd.read_csv(\"../data/reference_data_train.csv\").head(1)\nfeatures_dict = df_test.to_dict(orient=\"records\")[0]\n# Récupérer les noms de features du modèle entraîné\nfeature_names = list(model.feature_names_in_) if hasattr(model, 'feature_names_in_') else list(features_dict.keys())\ndef prediction_lente_actuelle():\n    #Ce que fait l' API actuellement (avec DataFrame Pandas)\n    df = pd.DataFrame([features_dict])\n    return model.predict_proba(df)[0][1]\ndef prediction_optimisee():\n    #Ce qu'on va mettre en place (NumPy pur, sans DataFrame)",
+        "detail": "profiling.profiler",
+        "documentation": {}
+    },
+    {
+        "label": "features_dict",
+        "kind": 5,
+        "importPath": "profiling.profiler",
+        "description": "profiling.profiler",
+        "peekOfCode": "features_dict = df_test.to_dict(orient=\"records\")[0]\n# Récupérer les noms de features du modèle entraîné\nfeature_names = list(model.feature_names_in_) if hasattr(model, 'feature_names_in_') else list(features_dict.keys())\ndef prediction_lente_actuelle():\n    #Ce que fait l' API actuellement (avec DataFrame Pandas)\n    df = pd.DataFrame([features_dict])\n    return model.predict_proba(df)[0][1]\ndef prediction_optimisee():\n    #Ce qu'on va mettre en place (NumPy pur, sans DataFrame)\n    values = np.array([features_dict[col] for col in feature_names]).reshape(1, -1)",
+        "detail": "profiling.profiler",
+        "documentation": {}
+    },
+    {
+        "label": "feature_names",
+        "kind": 5,
+        "importPath": "profiling.profiler",
+        "description": "profiling.profiler",
+        "peekOfCode": "feature_names = list(model.feature_names_in_) if hasattr(model, 'feature_names_in_') else list(features_dict.keys())\ndef prediction_lente_actuelle():\n    #Ce que fait l' API actuellement (avec DataFrame Pandas)\n    df = pd.DataFrame([features_dict])\n    return model.predict_proba(df)[0][1]\ndef prediction_optimisee():\n    #Ce qu'on va mettre en place (NumPy pur, sans DataFrame)\n    values = np.array([features_dict[col] for col in feature_names]).reshape(1, -1)\n    return model.predict_proba(values)[0][1]\nprint(\"PROFILING : VERSION LENTE (Pandas)\")",
+        "detail": "profiling.profiler",
+        "documentation": {}
+    },
+    {
+        "label": "p_lente",
+        "kind": 5,
+        "importPath": "profiling.profiler",
+        "description": "profiling.profiler",
+        "peekOfCode": "p_lente = pstats.Stats('stats_lente.prof')\np_lente.strip_dirs().sort_stats('time').print_stats(5) # Affiche les 5 opérations les plus lentes\nprint(\"\\nPROFILING : VERSION OPTIMISÉE (Numpy)\")\ncProfile.run('for _ in range(100): prediction_optimisee()', 'stats_opti.prof')\np_opti = pstats.Stats('stats_opti.prof')\np_opti.strip_dirs().sort_stats('time').print_stats(5)",
+        "detail": "profiling.profiler",
+        "documentation": {}
+    },
+    {
+        "label": "p_opti",
+        "kind": 5,
+        "importPath": "profiling.profiler",
+        "description": "profiling.profiler",
+        "peekOfCode": "p_opti = pstats.Stats('stats_opti.prof')\np_opti.strip_dirs().sort_stats('time').print_stats(5)",
+        "detail": "profiling.profiler",
         "documentation": {}
     },
     {
@@ -563,25 +671,16 @@
         "kind": 2,
         "importPath": "dashboard",
         "description": "dashboard",
-        "peekOfCode": "def load_reference_data():\n    return pd.read_csv(\"./data/reference_data.csv\")\n#2 Charger les données de production depuis nos los API\ndef log_current_data():\n    log_file = \"./logs/api_logs.jsonl\"\n    if not os.path.exists(log_file):\n        return pd.DataFrame()  #Retourne un DataFrame vide si le fichier n'existe pas\n    data = []\n    with open(log_file, \"r\") as f:\n        for line in f:",
+        "peekOfCode": "def load_reference_data():\n    return pd.read_csv(\"./data/reference_data_train.csv\")\n#2 Charger les logs complet de l'API\ndef load_logs():\n    log_file = \"./logs/api_logs.jsonl\"\n    if not os.path.exists(log_file):\n        return [], pd.DataFrame()  #Retourne une liste vide et un DataFrame vide si le fichier n'existe pas\n    raw_logs = []\n    inputs_data = []\n    with open(log_file, \"r\") as f:",
         "detail": "dashboard",
         "documentation": {}
     },
     {
-        "label": "log_current_data",
+        "label": "load_logs",
         "kind": 2,
         "importPath": "dashboard",
         "description": "dashboard",
-        "peekOfCode": "def log_current_data():\n    log_file = \"./logs/api_logs.jsonl\"\n    if not os.path.exists(log_file):\n        return pd.DataFrame()  #Retourne un DataFrame vide si le fichier n'existe pas\n    data = []\n    with open(log_file, \"r\") as f:\n        for line in f:\n            log_entry = json.loads(line)\n            data.append(log_entry[\"inputs\"])\n    return pd.DataFrame(data)",
-        "detail": "dashboard",
-        "documentation": {}
-    },
-    {
-        "label": "curr_data",
-        "kind": 5,
-        "importPath": "dashboard",
-        "description": "dashboard",
-        "peekOfCode": "curr_data = log_current_data()\nif curr_data.empty:\n    st.warning(\"Aucune donnée de production trouvée. Veuillez envoyer des requêtes à l'API pour voir les résultats.\")\nelse:\n    st.success(f\"Données de production (logs) chargées : {curr_data.shape[0]} requêtes.\")\n    if st.button(\"Générer le rapport de Data Drift (Evidently)\"):\n        with st.spinner(\"Analyse en cours... Cela peut prendre quelques secondes.\"):\n            #on demande à evidently de calculer le Data Drift\n            drift_report = Report(metrics=[DataDriftPreset()])\n            #On aligne les cols au cas où",
+        "peekOfCode": "def load_logs():\n    log_file = \"./logs/api_logs.jsonl\"\n    if not os.path.exists(log_file):\n        return [], pd.DataFrame()  #Retourne une liste vide et un DataFrame vide si le fichier n'existe pas\n    raw_logs = []\n    inputs_data = []\n    with open(log_file, \"r\") as f:\n        for line in f:\n            log_entry = json.loads(line)\n            raw_logs.append(log_entry)",
         "detail": "dashboard",
         "documentation": {}
     },
@@ -590,7 +689,7 @@
         "kind": 5,
         "importPath": "simulate_traffic",
         "description": "simulate_traffic",
-        "peekOfCode": "df = pd.read_csv(\"./data/reference_data.csv\").sample(50)\nprint(f\"{df.shape[0]} lignes chargées. Voici un aperçu :\")\n# --- CRÉATION DU FAUX DATA DRIFT ---\n#On va truquer une colonne importante (ex: on divise l'âge par 2)\n#pour que l'outil Evidently panique et détecte une anomalie !\nif \"DAYS_BIRTH\" in df.columns:\n    df[\"DAYS_BIRTH\"] = df[\"DAYS_BIRTH\"] * 0.5\n    print(\"Faux Data Drift appliqué sur DAYS_BIRTH !\")\n#L'URL de l' API en local\nAPI_URL = \"http://127.0.0.1:8000/predict\"",
+        "peekOfCode": "df = pd.read_csv(\"./data/reference_data_test.csv\").sample(50)\nprint(f\"{df.shape[0]} lignes chargées. Voici un aperçu :\")\n# --- CRÉATION DU FAUX DATA DRIFT ---\n#On va truquer une colonne importante (ex: on divise l'âge par 2)\n#pour que l'outil Evidently panique et détecte une anomalie !\nif \"DAYS_BIRTH\" in df.columns:\n    df[\"DAYS_BIRTH\"] = df[\"DAYS_BIRTH\"] * 0.5\n    print(\"Faux Data Drift appliqué sur DAYS_BIRTH !\")\n#L'URL de l' API en local\nAPI_URL = \"http://127.0.0.1:8000/predict\"",
         "detail": "simulate_traffic",
         "documentation": {}
     },

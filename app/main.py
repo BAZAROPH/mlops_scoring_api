@@ -61,12 +61,22 @@ def predict(data: ClientData):
     start_time = time.time()
     
     try:
-        df = pd.DataFrame([data.features])
+        #---- /df = pd.DataFrame([data.features])
         model = ml_models["model_scoring"]
+        # On s'assure de respecter l'ordre exact des colonnes attendu par le modèle
+        feature_names = list(model.feature_names_in_) if hasattr(model, 'feature_names_in_') else list(data.features.keys())
+
+        # On crée le tableau 2D pour scikit-learn/LightGBM
+        import numpy as np
+        features_array = np.array([data.features.get(col, 0) for col in feature_names]).reshape(1, -1)
+        
         
         #Prédiction (classe 1 = défaut)
-        #model.predict_proba renvoie [[proba_classe_0, proba_classe_1]]
-        proba_defaut = model.predict_proba(df)[0][1]
+        
+        #---/ model.predict_proba renvoie [[proba_classe_0, proba_classe_1]]
+        #---/ proba_defaut = model.predict_proba(df)[0][1]
+
+        proba_defaut = model.predict_proba(features_array)[0][1]
         
         execution_time = time.time() - start_time
 

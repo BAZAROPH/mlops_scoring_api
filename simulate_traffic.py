@@ -4,7 +4,7 @@ import time
 
 print("Chargement des données de référence...")
 #charger juste 50 lignes au hasard pour aller vite
-df = pd.read_csv("./data/reference_data.csv").sample(50)
+df = pd.read_csv("./data/reference_data_test.csv").sample(50)
 print(f"{df.shape[0]} lignes chargées. Voici un aperçu :")
 # --- CRÉATION DU FAUX DATA DRIFT ---
 #On va truquer une colonne importante (ex: on divise l'âge par 2)
