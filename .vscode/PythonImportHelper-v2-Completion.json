@@ -379,6 +379,22 @@
         "documentation": {}
     },
     {
+        "label": "DatasetCorrelations",
+        "importPath": "evidently.metrics",
+        "description": "evidently.metrics",
+        "isExtraImport": true,
+        "detail": "evidently.metrics",
+        "documentation": {}
+    },
+    {
+        "label": "DatasetMissingValueCount",
+        "importPath": "evidently.metrics",
+        "description": "evidently.metrics",
+        "isExtraImport": true,
+        "detail": "evidently.metrics",
+        "documentation": {}
+    },
+    {
         "label": "streamlit.components.v1",
         "kind": 6,
         "isExtraImport": true,
@@ -545,7 +561,7 @@
         "kind": 2,
         "importPath": "app.main",
         "description": "app.main",
-        "peekOfCode": "def predict(data: ClientData):\n    #On vérifie si le modèle a bien été chargé au démarrage\n    if \"model_scoring\" not in ml_models:\n        raise HTTPException(status_code=500, detail=\"Le modèle n'est pas prêt.\")\n    #Lancer le chronomètre pour mesurer le temps d'exécution\n    start_time = time.time()\n    try:\n        #---- /df = pd.DataFrame([data.features])\n        model = ml_models[\"model_scoring\"]\n        # On s'assure de respecter l'ordre exact des colonnes attendu par le modèle",
+        "peekOfCode": "def predict(data: ClientData):\n    #On vérifie si le modèle a bien été chargé au démarrage\n    if \"model_scoring\" not in ml_models:\n        raise HTTPException(status_code=500, detail=\"Le modèle n'est pas prêt.\")\n    #Lancer le chronomètre pour mesurer le temps d'exécution\n    start_time = time.time()\n    try:\n        #---- /df = pd.DataFrame([data.features])\n        model = ml_models[\"model_scoring\"]\n        #Vérifier que le client a bien envoyé le bon nombre de variables",
         "detail": "app.main",
         "documentation": {}
     },

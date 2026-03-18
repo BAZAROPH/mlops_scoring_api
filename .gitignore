@@ -2,6 +2,7 @@ logs/
 *.jsonl
 *.log
 drift_report.html
+drift_metrics_explained.md
 test.html
 .DS_Store
 

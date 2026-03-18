@@ -1,8 +1,10 @@
 import streamlit as st
 import pandas as pd
 import json
+import warnings
 from evidently import Report
 from evidently.presets import DataDriftPreset
+from evidently.metrics import DatasetCorrelations, DatasetMissingValueCount
 import streamlit.components.v1 as components
 import os
 
@@ -52,6 +54,7 @@ else:
 
     #Transformer les logs en DataFrame pour l'analyse
     df_logs = pd.DataFrame(raw_logs)
+    df_logs["timestamp"] = pd.to_datetime(df_logs["timestamp"]) #Conversion pour l'axe temporel
 
     #Calcul des métriques
     avg_latency = df_logs["execution_time_sec"].mean()
@@ -68,9 +71,18 @@ else:
     else:
         col3.metric("Latence Max (s)", f"{max_latency:.4f} sec", delta="Normale", delta_color="normal")
 
-    #Graphique de l'évolution du temps de réponse
-    st.write("**Évolution du temps de réponse (Latence en secondes)**")
-    st.line_chart(df_logs["execution_time_sec"])
+    #Graphiques : Vue IT (Temporelle) et Vue Métier (Distribution)
+    col_chart1, col_chart2 = st.columns(2)
+    
+    with col_chart1:
+        st.write("**Vue IT : Évolution de la latence (secondes)**")
+        st.line_chart(df_logs.set_index("timestamp")["execution_time_sec"])
+        
+    with col_chart2:
+        st.write("**Vue Métier : Répartition des profils de risque**")
+        # On arrondit les scores à la première décimale pour créer des tranches (0.1, 0.2...)
+        score_distribution = df_logs["prediction_score"].apply(lambda x: round(x, 1)).value_counts().sort_index()
+        st.bar_chart(score_distribution)
 
     st.markdown("---")
 
@@ -78,20 +90,47 @@ else:
     st.header("Annalyse de la dérive des données (Data Drift)")
     if st.button("Générer le rapport Evidently"):
         with st.spinner("Analyse en cours..."):
-            drift_report = Report(metrics=[DataDriftPreset()])
+            
+            #Intégration des métriques et configuration du PSI / Wasserstein
+            # 3 méthodes de détection de dérive selon le type de données
+                # - numérique : Wasserstein
+                # - catégoriel : PSI
+                # - tous types (fallback) : Jensen-Shannon
+            drift_report = Report(metrics=[
+                DatasetCorrelations(),
+                DatasetMissingValueCount(),
+                DataDriftPreset(method='jensenshannon', num_method='wasserstein', cat_method='psi')
+            ])
+            
             colonnes_communes = list(set(ref_data.columns).intersection(set(curr_data.columns)))
 
+            # Filtrer les colonnes constantes (source courante de NaN/division par zéro dans Evidently)
+            colonnes_a_analyser = [
+                c
+                for c in colonnes_communes
+                if ref_data[c].nunique(dropna=False) > 1 or curr_data[c].nunique(dropna=False) > 1
+            ]
+            if len(colonnes_a_analyser) < len(colonnes_communes):
+                st.warning(
+                    "Certaines colonnes constantes ont été exclues de l'analyse de dérive (évite les divisions par zéro)."
+                )
+
             #Générer le rapport et récupérer le snapshot
-            snapshot = drift_report.run(
-                reference_data=ref_data[colonnes_communes],
-                current_data=curr_data[colonnes_communes],
-            )
+            with warnings.catch_warnings():
+                warnings.filterwarnings(
+                    "ignore",
+                    message=".*invalid value encountered in divide.*",
+                )
+                snapshot = drift_report.run(
+                    reference_data=ref_data[colonnes_a_analyser],
+                    current_data=curr_data[colonnes_a_analyser],
+                )
 
             #Sauvegarde en html temporaire via le snapshot
             snapshot.save_html("drift_report.html")
 
-            #Affichage dans streamlit
+            #Affichage dans streamlit (J'ai mis la hauteur à 1200px car le rapport est plus long avec 3 métriques)
             with open("drift_report.html", "r", encoding="utf-8") as f:
                 html_content = f.read()
                 
-            components.html(html_content, height=1000, scrolling=True)
+            components.html(html_content, height=1200, scrolling=True)
