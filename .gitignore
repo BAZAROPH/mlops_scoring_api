@@ -10,3 +10,5 @@ test.html
 __pycache__/
 .pytest_cache/
 .coverage
+*.png
+*.prof
