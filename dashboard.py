@@ -2,9 +2,9 @@ import streamlit as st
 import pandas as pd
 import json
 import warnings
-from evidently import Report
+from evidently import Report, Dataset, DataDefinition
 from evidently.presets import DataDriftPreset
-from evidently.metrics import DatasetCorrelations, DatasetMissingValueCount
+from evidently.metrics import DatasetCorrelations
 import streamlit.components.v1 as components
 import os
 
@@ -33,7 +33,7 @@ def load_logs():
             inputs_data.append(log_entry["inputs"])
     return raw_logs, pd.DataFrame(inputs_data)
 
-#Exécuter
+#Exécution
 try:
     ref_data = load_reference_data()
     st.success(f"Données de référence chargées : {ref_data.shape[0]} lignes")
@@ -51,6 +51,24 @@ else:
 
     # ---------- Analyse opérationelle (Latence) ----------
     st.header("Santé opérationnelle de l'API")
+
+    # --- Comparaison Avant/Après Optimisation (Données du Profiling) ---
+    st.subheader("Impact de l'optimisation du code (Pandas vs NumPy)")
+    st.write("Comparatif du temps d'exécution basé sur l'audit de performance (100 requêtes) :")
+    
+    col_opti1, col_opti2 = st.columns([1, 2])
+    with col_opti1:
+        st.metric("Version initiale (Pandas)", "0.464 sec")
+        st.metric("Version optimisée (NumPy)", "0.111 sec", delta="-76% de latence", delta_color="normal")
+        
+    with col_opti2:
+        df_benchmark = pd.DataFrame({
+            "Version du Code": ["1. Pandas (Avant)", "2. NumPy (Après)"],
+            "Temps total (secondes)": [0.464, 0.111]
+        }).set_index("Version du Code")
+        st.bar_chart(df_benchmark)
+
+    st.markdown("---")
 
     #Transformer les logs en DataFrame pour l'analyse
     df_logs = pd.DataFrame(raw_logs)
@@ -91,20 +109,9 @@ else:
     if st.button("Générer le rapport Evidently"):
         with st.spinner("Analyse en cours..."):
             
-            #Intégration des métriques et configuration du PSI / Wasserstein
-            # 3 méthodes de détection de dérive selon le type de données
-                # - numérique : Wasserstein
-                # - catégoriel : PSI
-                # - tous types (fallback) : Jensen-Shannon
-            drift_report = Report(metrics=[
-                DatasetCorrelations(),
-                DatasetMissingValueCount(),
-                DataDriftPreset(method='jensenshannon', num_method='wasserstein', cat_method='psi')
-            ])
-            
             colonnes_communes = list(set(ref_data.columns).intersection(set(curr_data.columns)))
 
-            # Filtrer les colonnes constantes (source courante de NaN/division par zéro dans Evidently)
+            #Filtrer les colonnes constantes (source courante de NaN/division par zéro dans Evidently)
             colonnes_a_analyser = [
                 c
                 for c in colonnes_communes
@@ -115,21 +122,51 @@ else:
                     "Certaines colonnes constantes ont été exclues de l'analyse de dérive (évite les divisions par zéro)."
                 )
 
+            #Liste des variables catégorielles (Home Credit Default Risk).
+            liste_cat = [
+                "NAME_CONTRACT_TYPE", "CODE_GENDER", "FLAG_OWN_CAR", "FLAG_OWN_REALTY",
+                "NAME_TYPE_SUITE", "NAME_INCOME_TYPE", "NAME_EDUCATION_TYPE", 
+                "NAME_FAMILY_STATUS", "NAME_HOUSING_TYPE", "OCCUPATION_TYPE",
+                "WEEKDAY_APPR_PROCESS_START", "ORGANIZATION_TYPE", "FONDKAPREMONT_MODE",
+                "HOUSETYPE_MODE", "WALLSMATERIAL_MODE", "EMERGENCYSTATE_MODE"
+            ]
+            
+            cat_features = [col for col in liste_cat if col in colonnes_a_analyser]
+            num_features = [col for col in colonnes_a_analyser if col not in cat_features]
+
+            #Définition du schéma de données
+            definition = DataDefinition(
+                numerical_columns=num_features,
+                categorical_columns=cat_features
+            )
+
+            #Conversion sécurisée en Datasets Evidently
+            ref_dataset = Dataset.from_pandas(ref_data[colonnes_a_analyser], data_definition=definition)
+            curr_dataset = Dataset.from_pandas(curr_data[colonnes_a_analyser], data_definition=definition)
+
+            #Paramétrage des tests de Drift
+            drift_report = Report(metrics=[
+                DatasetCorrelations(), #<----Concept Drift / ''Drift des métriques''
+                DataDriftPreset(method='jensenshannon', num_method='wasserstein', cat_method='psi')
+            ])
+            # ------------------------------------------------------------------
+
             #Générer le rapport et récupérer le snapshot
             with warnings.catch_warnings():
                 warnings.filterwarnings(
                     "ignore",
                     message=".*invalid value encountered in divide.*",
                 )
+                #Dans la nouvelle API, on passe les objets `Dataset` que l'on a créés
                 snapshot = drift_report.run(
-                    reference_data=ref_data[colonnes_a_analyser],
-                    current_data=curr_data[colonnes_a_analyser],
+                    reference_data=ref_dataset,
+                    current_data=curr_dataset
                 )
 
             #Sauvegarde en html temporaire via le snapshot
             snapshot.save_html("drift_report.html")
 
-            #Affichage dans streamlit (J'ai mis la hauteur à 1200px car le rapport est plus long avec 3 métriques)
+            #Affichage dans streamlit
             with open("drift_report.html", "r", encoding="utf-8") as f:
                 html_content = f.read()
                 
